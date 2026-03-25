@@ -5,11 +5,6 @@ export default function Navbar() {
     <nav className="glass">
       <div className="container nav-content">
         <Link href="/" className="logo">JUNG CHIYOON</Link>
-        <ul className="nav-links">
-          <li><Link href="/">Home</Link></li>
-          <li><Link href="/gallery">Gallery</Link></li>
-          <li><Link href="/about">About</Link></li>
-        </ul>
       </div>
     </nav>
   );
