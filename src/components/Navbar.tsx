@@ -4,7 +4,7 @@ export default function Navbar() {
   return (
     <nav className="glass">
       <div className="container nav-content">
-        <Link href="/" className="logo">ARTIST PORTFOLIO</Link>
+        <Link href="/" className="logo">JUNG CHIYOON</Link>
         <ul className="nav-links">
           <li><Link href="/">Home</Link></li>
           <li><Link href="/gallery">Gallery</Link></li>
