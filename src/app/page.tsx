@@ -14,7 +14,7 @@ export default function Home() {
 
       <section style={{ padding: '4rem 0' }}>
         <div className="gallery-grid">
-          {portfolioData.items.map((item) => (
+          {portfolioData.map((item) => (
             <div key={item.id} className="gallery-item animate-fade">
               {item.type === 'image' ? (
                 <img src={item.filename} alt={item.title} loading="lazy" />
