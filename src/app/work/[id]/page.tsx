@@ -37,17 +37,21 @@ export default function WorkDetail() {
                 {work.medium} {work.dimensions}
               </span>
             </div>
-            <p style={{ fontSize: '1.1rem', color: 'var(--secondary)', lineHeight: 1.6, marginTop: '0.5rem' }}>{work.description}</p>
           </div>
         </div>
 
-        {/* Bottom Image (Right Aligned) */}
-        <div style={{ width: '50%', marginLeft: 'auto', overflow: 'hidden', background: 'var(--accent)' }}>
-          {work.type === 'image' ? (
-            <img src={work.filename} alt={work.title} style={{ width: '100%', height: 'auto', display: 'block' }} />
-          ) : (
-            <video src={work.filename} controls style={{ width: '100%', height: 'auto', display: 'block' }} />
-          )}
+        {/* Bottom Section: Statement (Left) + Image (Right) */}
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'start' }}>
+          <div style={{ fontSize: '10pt', color: '#999999', fontWeight: 300, lineHeight: 1.8, whiteSpace: 'pre-wrap' }}>
+            {work.description}
+          </div>
+          <div style={{ width: '100%', overflow: 'hidden', background: 'var(--accent)' }}>
+            {work.type === 'image' ? (
+              <img src={work.filename} alt={work.title} style={{ width: '100%', height: 'auto', display: 'block' }} />
+            ) : (
+              <video src={work.filename} controls style={{ width: '100%', height: 'auto', display: 'block' }} />
+            )}
+          </div>
         </div>
       </div>
     </div>
