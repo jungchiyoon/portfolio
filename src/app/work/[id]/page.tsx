@@ -21,26 +21,24 @@ export default function WorkDetail() {
 
   return (
     <div className="container animate-fade" style={{ padding: '4rem 0' }}>
-      <Link href="/" style={{ marginBottom: '2rem', display: 'inline-block', opacity: 0.6 }}>
-        Back
-      </Link>
-      
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '0.8rem' }}>
-        {/* Top Image */}
-        {work.detailImage && (
-          <div style={{ width: '100%', background: 'var(--accent)' }}>
-            <img src={work.detailImage} alt={`${work.title} detail`} style={{ width: '100%', height: 'auto', display: 'block' }} />
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '1.2rem' }}>
+        {/* Top Image & Caption Group */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+          {work.detailImage && (
+            <div style={{ width: '100%', background: 'var(--accent)' }}>
+              <img src={work.detailImage} alt={`${work.title} detail`} style={{ width: '100%', height: 'auto', display: 'block' }} />
+            </div>
+          )}
+          
+          <div style={{ maxWidth: '800px' }}>
+            <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.8rem' }}>
+              <h1 style={{ fontSize: '10pt', fontWeight: 300, color: '#999999', margin: 0 }}>{work.title}</h1>
+              <span style={{ fontSize: '10pt', fontWeight: 300, color: '#999999' }}>
+                {work.medium} {work.dimensions}
+              </span>
+            </div>
+            <p style={{ fontSize: '1.1rem', color: 'var(--secondary)', lineHeight: 1.6, marginTop: '0.5rem' }}>{work.description}</p>
           </div>
-        )}
-        
-        <div style={{ maxWidth: '800px', marginBottom: '1.2rem' }}>
-          <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.8rem' }}>
-            <h1 style={{ fontSize: '12pt', fontWeight: 300, color: '#999999', margin: 0 }}>{work.title}</h1>
-            <span style={{ fontSize: '12pt', fontWeight: 300, color: '#999999' }}>
-              {work.medium} {work.dimensions}
-            </span>
-          </div>
-          <p style={{ fontSize: '1.2rem', color: 'var(--secondary)', lineHeight: 1.6 }}>{work.description}</p>
         </div>
 
         {/* Bottom Image (Right Aligned) */}
