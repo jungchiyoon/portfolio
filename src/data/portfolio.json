@@ -17,5 +17,14 @@
     "dimensions": "80x100cm",
     "filename": "/portfolio/work-02.jpg",
     "type": "image"
+  },
+  {
+    "id": "work-03",
+    "title": "Final Chapter 2022",
+    "description": "",
+    "medium": "Acrylic on canvas",
+    "dimensions": "To be added",
+    "filename": "/portfolio/work-03.jpg",
+    "type": "image"
   }
 ]
