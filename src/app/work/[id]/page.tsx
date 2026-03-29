@@ -26,7 +26,7 @@ export default function WorkDetail() {
       </Link>
       
       <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '2rem' }}>
-        <div style={{ width: '100%', borderRadius: '12px', overflow: 'hidden', background: 'var(--accent)' }}>
+        <div style={{ width: '100%', overflow: 'hidden', background: 'var(--accent)' }}>
           {work.type === 'image' ? (
             <img src={work.filename} alt={work.title} style={{ width: '100%', height: 'auto', display: 'block' }} />
           ) : (
