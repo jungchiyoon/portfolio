@@ -58,7 +58,16 @@ export default function WorkDetail() {
           <div style={{ width: '100%', maxWidth: '1000px', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
             <div style={{ width: '100%', background: 'var(--accent)', overflow: 'hidden' }}>
               {work.type === 'image' ? (
-                <img src={work.filename} alt={work.title} style={{ width: '100%', height: 'auto', display: 'block' }} />
+                <img 
+                  src={work.filename} 
+                  alt={work.title} 
+                  style={{ 
+                    width: '100%', 
+                    height: 'auto', 
+                    display: 'block',
+                    filter: work.id === 'work-03' ? 'brightness(1.1)' : 'none'
+                  }} 
+                />
               ) : (
                 <video src={work.filename} controls style={{ width: '100%', height: 'auto', display: 'block' }} />
               )}
