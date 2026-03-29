@@ -43,6 +43,12 @@ export default function WorkDetail() {
           </div>
           <p style={{ fontSize: '1.2rem', color: 'var(--secondary)', lineHeight: 1.6 }}>{work.description}</p>
         </div>
+
+        {work.detailImage && (
+          <div style={{ width: '100%', marginTop: '1rem', background: 'var(--accent)' }}>
+            <img src={work.detailImage} alt={`${work.title} detail`} style={{ width: '100%', height: 'auto', display: 'block' }} />
+          </div>
+        )}
       </div>
     </div>
   );
