@@ -35,7 +35,7 @@ export default function WorkDetail() {
         </div>
         
         <div style={{ maxWidth: '800px' }}>
-          <h1 style={{ fontSize: '2.5rem', fontWeight: 300, color: '#999999', marginBottom: '1rem' }}>{work.title}</h1>
+          <h1 style={{ fontSize: '12pt', fontWeight: 300, color: '#999999', marginBottom: '1rem' }}>{work.title}</h1>
           <p style={{ fontSize: '1.2rem', color: 'var(--secondary)', lineHeight: 1.6 }}>{work.description}</p>
         </div>
       </div>
