@@ -35,7 +35,12 @@ export default function WorkDetail() {
         </div>
         
         <div style={{ maxWidth: '800px' }}>
-          <h1 style={{ fontSize: '12pt', fontWeight: 300, color: '#999999', marginBottom: '1rem' }}>{work.title}</h1>
+          <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.8rem', marginBottom: '1rem' }}>
+            <h1 style={{ fontSize: '12pt', fontWeight: 300, color: '#999999', margin: 0 }}>{work.title}</h1>
+            <span style={{ fontSize: '12pt', fontWeight: 300, color: '#999999' }}>
+              {work.medium} {work.dimensions}
+            </span>
+          </div>
           <p style={{ fontSize: '1.2rem', color: 'var(--secondary)', lineHeight: 1.6 }}>{work.description}</p>
         </div>
       </div>
