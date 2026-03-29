@@ -8,5 +8,14 @@
     "filename": "/portfolio/work-01-v2.jpg",
     "detailImage": "/portfolio/work-01-detail.jpg",
     "type": "image"
+  },
+  {
+    "id": "work-02",
+    "title": "Untitled, 2023",
+    "description": "",
+    "medium": "Acrylic on panel",
+    "dimensions": "To be added",
+    "filename": "/portfolio/work-02.jpg",
+    "type": "image"
   }
 ]
