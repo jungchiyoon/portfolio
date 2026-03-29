@@ -15,7 +15,6 @@ export default function Home() {
               )}
               <div className="gallery-overlay">
                 <h3>{item.title}</h3>
-                <p>{item.description}</p>
               </div>
             </Link>
           ))}
