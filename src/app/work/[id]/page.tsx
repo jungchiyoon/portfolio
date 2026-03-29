@@ -26,13 +26,12 @@ export default function WorkDetail() {
       </Link>
       
       <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '2rem' }}>
-        <div style={{ width: '100%', overflow: 'hidden', background: 'var(--accent)' }}>
-          {work.type === 'image' ? (
-            <img src={work.filename} alt={work.title} style={{ width: '100%', height: 'auto', display: 'block' }} />
-          ) : (
-            <video src={work.filename} controls style={{ width: '100%', height: 'auto', display: 'block' }} />
-          )}
-        </div>
+        {/* Top Image (Now using detailImage) */}
+        {work.detailImage && (
+          <div style={{ width: '100%', background: 'var(--accent)' }}>
+            <img src={work.detailImage} alt={`${work.title} detail`} style={{ width: '100%', height: 'auto', display: 'block' }} />
+          </div>
+        )}
         
         <div style={{ maxWidth: '800px' }}>
           <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.8rem', marginBottom: '1rem' }}>
@@ -44,11 +43,14 @@ export default function WorkDetail() {
           <p style={{ fontSize: '1.2rem', color: 'var(--secondary)', lineHeight: 1.6 }}>{work.description}</p>
         </div>
 
-        {work.detailImage && (
-          <div style={{ width: '100%', marginTop: '1rem', background: 'var(--accent)' }}>
-            <img src={work.detailImage} alt={`${work.title} detail`} style={{ width: '100%', height: 'auto', display: 'block' }} />
-          </div>
-        )}
+        {/* Bottom Image (Now using filename, reduced to 50%) */}
+        <div style={{ width: '50%', overflow: 'hidden', background: 'var(--accent)' }}>
+          {work.type === 'image' ? (
+            <img src={work.filename} alt={work.title} style={{ width: '100%', height: 'auto', display: 'block' }} />
+          ) : (
+            <video src={work.filename} controls style={{ width: '100%', height: 'auto', display: 'block' }} />
+          )}
+        </div>
       </div>
     </div>
   );
