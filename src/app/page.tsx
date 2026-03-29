@@ -14,7 +14,15 @@ export default function Home() {
                 <video src={item.filename} muted loop onMouseOver={(e) => e.currentTarget.play()} onMouseOut={(e) => e.currentTarget.pause()} />
               )}
               <div className="gallery-overlay">
-                <h3>{item.title}</h3>
+                <h3>
+                  {item.id === 'work-01' ? (
+                    <>
+                      <span style={{ fontSize: 'calc(1em - 1pt)' }}>■□■□■</span> 2023
+                    </>
+                  ) : (
+                    item.title
+                  )}
+                </h3>
               </div>
             </Link>
           ))}
