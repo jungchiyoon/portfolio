@@ -3,6 +3,8 @@
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import portfolioData from '@/data/portfolio.json';
+import Navbar from '@/components/Navbar';
+import AsciiVideo from '@/components/AsciiVideo';
 
 export default function WorkDetail() {
   const { id } = useParams();
@@ -57,7 +59,9 @@ export default function WorkDetail() {
           {/* Main Work Image (Large & Centered) */}
           <div style={{ width: '100%', maxWidth: '1000px', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
             <div style={{ width: '100%', background: 'var(--accent)', overflow: 'hidden' }}>
-              {work.type === 'image' ? (
+              {work.id === 'work-04' ? (
+                <AsciiVideo src={work.filename} width={80} autoPlay={true} />
+              ) : work.type === 'image' ? (
                 <img 
                   src={work.filename} 
                   alt={work.title} 
