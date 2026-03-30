@@ -4,8 +4,8 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
-  title: 'Artist Portfolio | Premium Showcase',
-  description: 'A curated showcase of fine art, photography, and film.',
+  title: 'JUNG CHIYOON',
+  description: 'Artist Portfolio',
 };
 
 export default function RootLayout({
