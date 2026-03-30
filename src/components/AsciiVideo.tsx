@@ -27,13 +27,16 @@ export default function AsciiVideo({ src, width = 100, className = '', autoPlay 
     let animationId: number;
 
     const renderFrame = () => {
-      if (video.paused || video.ended) {
+      if (!video || !canvas || !ctx) return;
+      if (video.paused || video.ended || video.readyState < 2) {
         animationId = requestAnimationFrame(renderFrame);
         return;
       }
 
-      const aspectRatio = video.videoHeight / video.videoWidth;
-      const height = Math.round(width * aspectRatio * 0.5); // 0.5 to compensate for font aspect ratio
+      const vWidth = video.videoWidth || 640;
+      const vHeight = video.videoHeight || 480;
+      const aspectRatio = vHeight / vWidth;
+      const height = Math.round(width * aspectRatio * 0.5);
 
       canvas.width = width;
       canvas.height = height;
@@ -49,11 +52,7 @@ export default function AsciiVideo({ src, width = 100, className = '', autoPlay 
           const r = pixels[offset];
           const g = pixels[offset + 1];
           const b = pixels[offset + 2];
-          
-          // Calculate brightness (Luminance)
           const brightness = (0.2126 * r + 0.7152 * g + 0.0722 * b);
-          
-          // Map brightness (0-255) to character map (reversed for light background)
           const charIndex = Math.floor((brightness / 256) * CHAR_MAP.length);
           asciiStr += CHAR_MAP[charIndex] || ' ';
         }
@@ -64,11 +63,22 @@ export default function AsciiVideo({ src, width = 100, className = '', autoPlay 
       animationId = requestAnimationFrame(renderFrame);
     };
 
-    video.addEventListener('play', () => {
+    const startRendering = () => {
+      if (animationId) cancelAnimationFrame(animationId);
       renderFrame();
-    });
+    };
+
+    video.addEventListener('loadedmetadata', startRendering);
+    video.addEventListener('play', startRendering);
+    
+    // Fallback if already playing or loaded
+    if (video.readyState >= 2) {
+      startRendering();
+    }
 
     return () => {
+      video.removeEventListener('loadedmetadata', startRendering);
+      video.removeEventListener('play', startRendering);
       cancelAnimationFrame(animationId);
     };
   }, [width]);
