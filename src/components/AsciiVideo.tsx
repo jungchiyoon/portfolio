@@ -17,17 +17,14 @@ export default function AsciiVideo({ src, width = 100, className = '', autoPlay 
   const [ascii, setAscii] = useState<string>('');
 
   useEffect(() => {
-    console.log('AsciiVideo: Component mounted with src:', src);
     const video = videoRef.current;
     const canvas = canvasRef.current;
     if (!video || !canvas) {
-      console.error('AsciiVideo: Video or Canvas ref not found');
       return;
     }
 
     const ctx = canvas.getContext('2d', { willReadFrequently: true });
     if (!ctx) {
-      console.error('AsciiVideo: Canvas context not found');
       return;
     }
 
@@ -37,9 +34,6 @@ export default function AsciiVideo({ src, width = 100, className = '', autoPlay 
       if (!video || !canvas || !ctx) return;
       
       if (video.paused || video.ended || video.readyState < 2) {
-        if (video.readyState < 2) {
-          // console.log('AsciiVideo: Video not ready yet (readyState:', video.readyState, ')');
-        }
         animationId = requestAnimationFrame(renderFrame);
         return;
       }
