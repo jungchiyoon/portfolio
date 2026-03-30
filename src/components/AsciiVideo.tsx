@@ -17,18 +17,29 @@ export default function AsciiVideo({ src, width = 100, className = '', autoPlay 
   const [ascii, setAscii] = useState<string>('');
 
   useEffect(() => {
+    console.log('AsciiVideo: Component mounted with src:', src);
     const video = videoRef.current;
     const canvas = canvasRef.current;
-    if (!video || !canvas) return;
+    if (!video || !canvas) {
+      console.error('AsciiVideo: Video or Canvas ref not found');
+      return;
+    }
 
     const ctx = canvas.getContext('2d', { willReadFrequently: true });
-    if (!ctx) return;
+    if (!ctx) {
+      console.error('AsciiVideo: Canvas context not found');
+      return;
+    }
 
     let animationId: number;
 
     const renderFrame = () => {
       if (!video || !canvas || !ctx) return;
+      
       if (video.paused || video.ended || video.readyState < 2) {
+        if (video.readyState < 2) {
+          // console.log('AsciiVideo: Video not ready yet (readyState:', video.readyState, ')');
+        }
         animationId = requestAnimationFrame(renderFrame);
         return;
       }
@@ -64,55 +75,79 @@ export default function AsciiVideo({ src, width = 100, className = '', autoPlay 
     };
 
     const startRendering = () => {
+      console.log('AsciiVideo: startRendering called (readyState:', video.readyState, ')');
       if (animationId) cancelAnimationFrame(animationId);
       renderFrame();
     };
 
     video.addEventListener('loadedmetadata', startRendering);
     video.addEventListener('play', startRendering);
+    video.addEventListener('playing', startRendering);
+    video.addEventListener('canplay', startRendering);
     
-    // Fallback if already playing or loaded
-    if (video.readyState >= 2) {
-      startRendering();
-    }
+    // Explicitly try to play
+    video.play().catch(err => {
+      console.warn('AsciiVideo: Play failed, waiting for interaction or readyState:', err);
+    });
+
+    // Polling fallback for readyState
+    const checkInterval = setInterval(() => {
+      if (video.readyState >= 2) {
+        console.log('AsciiVideo: Polling found readyState >= 2');
+        startRendering();
+        clearInterval(checkInterval);
+      }
+    }, 500);
 
     return () => {
       video.removeEventListener('loadedmetadata', startRendering);
       video.removeEventListener('play', startRendering);
+      video.removeEventListener('playing', startRendering);
+      video.removeEventListener('canplay', startRendering);
+      clearInterval(checkInterval);
       cancelAnimationFrame(animationId);
     };
-  }, [width]);
+  }, [width, src]);
 
   return (
-    <div className={`ascii-container ${className}`} style={{ width: '100%', overflow: 'hidden', background: '#ffffff' }}>
+    <div className={`ascii-container ${className}`} style={{ width: '100%', overflow: 'hidden', background: '#ffffff', position: 'relative' }}>
+      {/* Hidden but technically visible to ensure loading */}
       <video
         ref={videoRef}
         src={src}
         muted
         loop
-        autoPlay={autoPlay}
         playsInline
-        style={{ display: 'none' }}
+        style={{ 
+          position: 'absolute', 
+          top: 0, 
+          left: 0, 
+          width: '1px', 
+          height: '1px', 
+          opacity: 0,
+          pointerEvents: 'none' 
+        }}
       />
       <canvas ref={canvasRef} style={{ display: 'none' }} />
-      <pre
-        style={{
-          margin: 0,
-          padding: 0,
-          fontSize: '6px',
-          lineHeight: '6px',
-          letterSpacing: '3px',
-          fontWeight: 400,
-          color: '#000000',
-          fontFamily: '"Courier New", Courier, monospace',
-          whiteSpace: 'pre',
-          textAlign: 'center',
-          transform: 'scale(1.1)', // Subtle scale for impact
-          transformOrigin: 'center center'
-        }}
-      >
-        {ascii}
-      </pre>
+      <div style={{ width: '100%', minHeight: '300px', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: '#ffffff' }}>
+        <pre
+          style={{
+            margin: 0,
+            padding: '1rem',
+            fontSize: '8px',
+            lineHeight: '8px',
+            letterSpacing: '4px',
+            fontWeight: 500,
+            color: '#000000',
+            fontFamily: 'monospace',
+            whiteSpace: 'pre',
+            textAlign: 'left',
+            overflow: 'hidden'
+          }}
+        >
+          {ascii || 'Loading ASCII data...'}
+        </pre>
+      </div>
     </div>
   );
 }
