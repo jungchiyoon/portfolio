@@ -8,6 +8,7 @@ interface AsciiVideoProps {
   className?: string;
   autoPlay?: boolean;
   fontSize?: string;
+  backgroundColor?: string;
 }
 
 
@@ -16,7 +17,8 @@ export default function AsciiVideo({
   width = 100, 
   className = '', 
   autoPlay = true,
-  fontSize = '10px'
+  fontSize = '10px',
+  backgroundColor = '#ffffff'
 }: AsciiVideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -139,7 +141,7 @@ export default function AsciiVideo({
   }, [width, src]);
 
   return (
-    <div className={`ascii-container ${className}`} style={{ width: '100%', overflow: 'hidden', background: '#ffffff', position: 'relative' }}>
+    <div className={`ascii-container ${className}`} style={{ width: '100%', overflow: 'hidden', background: backgroundColor, position: 'relative' }}>
       {/* Hidden but technically visible to ensure loading */}
       <video
         ref={videoRef}
@@ -158,7 +160,7 @@ export default function AsciiVideo({
         }}
       />
       <canvas ref={canvasRef} style={{ display: 'none' }} />
-      <div style={{ width: '100%', minHeight: '300px', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: '#ffffff' }}>
+      <div style={{ width: '100%', minHeight: '300px', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: backgroundColor }}>
         <pre
           style={{
             margin: 0,
