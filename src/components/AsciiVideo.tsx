@@ -9,6 +9,8 @@ interface AsciiVideoProps {
   autoPlay?: boolean;
   fontSize?: string;
   backgroundColor?: string;
+  color?: string;
+  subtitle?: string;
 }
 
 
@@ -18,7 +20,9 @@ export default function AsciiVideo({
   className = '', 
   autoPlay = true,
   fontSize = '10px',
-  backgroundColor = '#ffffff'
+  backgroundColor = '#ffffff',
+  color = '#000000',
+  subtitle = ''
 }: AsciiVideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -169,7 +173,7 @@ export default function AsciiVideo({
             lineHeight: fontSize,
             letterSpacing: '0px',
             fontWeight: 500,
-            color: '#000000',
+            color: color,
             fontFamily: 'monospace',
             whiteSpace: 'pre',
             textAlign: 'left',
@@ -179,6 +183,23 @@ export default function AsciiVideo({
           {ascii || 'Loading ASCII data...'}
         </pre>
       </div>
+      {subtitle && (
+        <div 
+          style={{ 
+            position: 'absolute', 
+            bottom: '2rem', 
+            left: 0, 
+            right: 0, 
+            textAlign: 'center',
+            color: '#ffffff',
+            fontFamily: 'monospace',
+            fontSize: '14px',
+            letterSpacing: '0.2em'
+          }}
+        >
+          {subtitle}
+        </div>
+      )}
     </div>
   );
 }
