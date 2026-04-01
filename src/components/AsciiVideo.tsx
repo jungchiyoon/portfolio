@@ -9,7 +9,6 @@ interface AsciiVideoProps {
   autoPlay?: boolean;
 }
 
-const CHAR_MAP = '@%#*+=-:. '; // Density map (Dark to Light for White background)
 
 export default function AsciiVideo({ src, width = 100, className = '', autoPlay = true }: AsciiVideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -41,25 +40,54 @@ export default function AsciiVideo({ src, width = 100, className = '', autoPlay 
       const vWidth = video.videoWidth || 640;
       const vHeight = video.videoHeight || 480;
       const aspectRatio = vHeight / vWidth;
-      const height = Math.round(width * aspectRatio * 0.5);
+      
+      // Braille uses a 2x4 grid. To maintain the same character width, 
+      // we need 2x pixels horizontally and 4x pixels vertically per character.
+      const canvasWidth = width * 2;
+      const canvasHeight = Math.round((width * 2 * aspectRatio) / 4) * 4;
 
-      canvas.width = width;
-      canvas.height = height;
+      canvas.width = canvasWidth;
+      canvas.height = canvasHeight;
 
-      ctx.drawImage(video, 0, 0, width, height);
-      const imageData = ctx.getImageData(0, 0, width, height);
+      ctx.drawImage(video, 0, 0, canvasWidth, canvasHeight);
+      const imageData = ctx.getImageData(0, 0, canvasWidth, canvasHeight);
       const pixels = imageData.data;
 
       let asciiStr = '';
-      for (let y = 0; y < height; y++) {
-        for (let x = 0; x < width; x++) {
-          const offset = (y * width + x) * 4;
-          const r = pixels[offset];
-          const g = pixels[offset + 1];
-          const b = pixels[offset + 2];
-          const brightness = (0.2126 * r + 0.7152 * g + 0.0722 * b);
-          const charIndex = Math.floor((brightness / 256) * CHAR_MAP.length);
-          asciiStr += CHAR_MAP[charIndex] || ' ';
+      const threshold = 127; // Threshold for dark vs light
+
+      for (let y = 0; y < canvasHeight; y += 4) {
+        for (let x = 0; x < canvasWidth; x += 2) {
+          let brailleCode = 0;
+          
+          // Braille dot mapping:
+          // 1 4
+          // 2 5
+          // 3 6
+          // 7 8
+          const dots = [
+            [0, 0, 0x01], [0, 1, 0x02], [0, 2, 0x04],
+            [1, 0, 0x08], [1, 1, 0x10], [1, 2, 0x20],
+            [0, 3, 0x40], [1, 3, 0x80]
+          ];
+
+          for (const [dx, dy, bit] of dots) {
+            const px = x + dx;
+            const py = y + dy;
+            if (px < canvasWidth && py < canvasHeight) {
+              const offset = (py * canvasWidth + px) * 4;
+              const r = pixels[offset];
+              const g = pixels[offset + 1];
+              const b = pixels[offset + 2];
+              const brightness = (0.2126 * r + 0.7152 * g + 0.0722 * b);
+              // Dark pixels (low brightness) become dots on white background
+              if (brightness < threshold) {
+                brailleCode |= bit;
+              }
+            }
+          }
+          
+          asciiStr += String.fromCharCode(0x2800 + brailleCode);
         }
         asciiStr += '\n';
       }
@@ -128,9 +156,9 @@ export default function AsciiVideo({ src, width = 100, className = '', autoPlay 
           style={{
             margin: 0,
             padding: '1rem',
-            fontSize: '8px',
-            lineHeight: '8px',
-            letterSpacing: '4px',
+            fontSize: '10px',
+            lineHeight: '10px',
+            letterSpacing: '0px',
             fontWeight: 500,
             color: '#000000',
             fontFamily: 'monospace',
