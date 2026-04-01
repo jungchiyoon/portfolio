@@ -15,8 +15,10 @@ export default function Home() {
                   width={100} 
                   fontSize="5px" 
                   backgroundColor="#F78989" 
-                  color="#ffffff"
+                  color="#000000"
                   subtitle="⠏⠗⠑⠞⠁⠗⠊⠁"
+                  subtitleColor="#ffffff"
+                  subtitleFontSize="8px"
                   autoPlay={true} 
                 />
               ) : item.type === 'image' ? (

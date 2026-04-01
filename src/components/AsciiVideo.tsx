@@ -11,6 +11,8 @@ interface AsciiVideoProps {
   backgroundColor?: string;
   color?: string;
   subtitle?: string;
+  subtitleColor?: string;
+  subtitleFontSize?: string;
 }
 
 
@@ -22,7 +24,9 @@ export default function AsciiVideo({
   fontSize = '10px',
   backgroundColor = '#ffffff',
   color = '#000000',
-  subtitle = ''
+  subtitle = '',
+  subtitleColor = '#ffffff',
+  subtitleFontSize = '14px'
 }: AsciiVideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -191,10 +195,11 @@ export default function AsciiVideo({
             left: 0, 
             right: 0, 
             textAlign: 'center',
-            color: '#ffffff',
+            color: subtitleColor,
             fontFamily: 'monospace',
-            fontSize: '14px',
-            letterSpacing: '0.2em'
+            fontSize: subtitleFontSize,
+            lineHeight: subtitleFontSize,
+            letterSpacing: '0px'
           }}
         >
           {subtitle}
