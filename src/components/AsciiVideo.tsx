@@ -7,10 +7,17 @@ interface AsciiVideoProps {
   width?: number; // Target characters wide
   className?: string;
   autoPlay?: boolean;
+  fontSize?: string;
 }
 
 
-export default function AsciiVideo({ src, width = 100, className = '', autoPlay = true }: AsciiVideoProps) {
+export default function AsciiVideo({ 
+  src, 
+  width = 100, 
+  className = '', 
+  autoPlay = true,
+  fontSize = '10px'
+}: AsciiVideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [ascii, setAscii] = useState<string>('');
@@ -156,8 +163,8 @@ export default function AsciiVideo({ src, width = 100, className = '', autoPlay 
           style={{
             margin: 0,
             padding: '1rem',
-            fontSize: '10px',
-            lineHeight: '10px',
+            fontSize: fontSize,
+            lineHeight: fontSize,
             letterSpacing: '0px',
             fontWeight: 500,
             color: '#000000',

@@ -10,7 +10,7 @@ export default function Home() {
           {portfolioData.map((item) => (
             <Link key={item.id} href={`/work/${item.id}`} className="gallery-item">
               {item.id === 'work-04' ? (
-                <AsciiVideo src={item.filename} width={50} autoPlay={true} />
+                <AsciiVideo src={item.filename} width={100} fontSize="5px" autoPlay={true} />
               ) : item.type === 'image' ? (
                 <img src={item.filename} alt={item.title} />
               ) : (
