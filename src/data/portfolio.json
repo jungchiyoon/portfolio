@@ -26,15 +26,5 @@
     "dimensions": "27x35cm",
     "filename": "/portfolio/work-03.jpg",
     "type": "image"
-  },
-  {
-    "id": "work-04",
-    "title": "Visual Field ℏ 2022",
-    "description": "In the reduction of the image to its fundamental data structures, we observe the core of our visual field — not as colors or shapes, but as a grid of interaction. This ASCII representation of light reflects the Standard Model's pursuit of the most basic elements. Even a gaze is composed of these discrete, unyielding laws.",
-    "medium": "Single-channel ASCII video",
-    "dimensions": "Variable dimensions",
-    "filename": "/portfolio/work-04.mp4",
-    "type": "video",
-    "ascii": true
   }
 ]

@@ -9,11 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "canvas": "^3.2.3",
+    "framer-motion": "latest",
+    "jspdf": "^4.2.1",
+    "lucide-react": "latest",
     "next": "latest",
     "react": "latest",
-    "react-dom": "latest",
-    "framer-motion": "latest",
-    "lucide-react": "latest"
+    "react-dom": "latest"
   },
   "devDependencies": {
     "@types/node": "latest",

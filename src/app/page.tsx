@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import AsciiVideo from '@/components/AsciiVideo';
+
 import portfolioData from '@/data/portfolio.json';
 
 export default function Home() {
@@ -9,19 +9,7 @@ export default function Home() {
         <div className="gallery-grid">
           {portfolioData.map((item) => (
             <Link key={item.id} href={`/work/${item.id}`} className="gallery-item">
-              {item.id === 'work-04' ? (
-                <AsciiVideo 
-                  src={item.filename} 
-                  width={100} 
-                  fontSize="5px" 
-                  backgroundColor="#F78989" 
-                  color="#000000"
-                  subtitle="⠏⠗⠑⠞⠁⠗⠊⠁"
-                  subtitleColor="#ffffff"
-                  subtitleFontSize="8px"
-                  autoPlay={true} 
-                />
-              ) : item.type === 'image' ? (
+              {item.type === 'image' ? (
                 <img src={item.filename} alt={item.title} />
               ) : (
                 <video src={item.filename} muted loop onMouseOver={(e) => e.currentTarget.play()} onMouseOut={(e) => e.currentTarget.pause()} />
