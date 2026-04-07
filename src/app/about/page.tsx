@@ -12,12 +12,14 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <p style={{ marginBottom: '0.5rem' }}>Born 1997 Seoul</p>
-          <p style={{ marginBottom: '2rem' }}>BFA, Seoul National University of Science and Technology</p>
-          
-          <div style={{ marginTop: '4rem', opacity: 0.8 }}>
-            <p style={{ marginBottom: '0.5rem' }}>Contact +82-10-8919-5048</p>
-            <p>yt3sla0011@naver.com</p>
+          <div style={{ fontSize: '0.85rem', lineHeight: 1.5 }}>
+            <p style={{ marginBottom: '0.2rem' }}>Born 1997 Seoul</p>
+            <p style={{ marginBottom: '0' }}>BFA, Seoul National University of Science and Technology</p>
+            
+            <div style={{ marginTop: '2rem', opacity: 0.8 }}>
+              <p style={{ marginBottom: '0.2rem' }}>Contact +82-10-8919-5048</p>
+              <p style={{ marginBottom: '0' }}>yt3sla0011@naver.com</p>
+            </div>
           </div>
         </div>
       </section>
