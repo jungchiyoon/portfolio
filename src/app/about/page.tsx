@@ -3,6 +3,15 @@ export default function AboutPage() {
     <div className="container animate-fade">
       <section style={{ padding: '8rem 0', maxWidth: '600px' }}>
         <div style={{ lineHeight: 2.0, fontSize: '1.1rem', fontWeight: 400 }}>
+          <div style={{ marginBottom: '4rem', fontSize: '1.05rem', color: '#404040', textAlign: 'justify', lineHeight: 1.8 }}>
+            <p style={{ marginBottom: '1.5rem' }}>
+              I intend to view all aesthetic phenomena before my eyes through an evolutionary lens. In this view, only forms advantageous to survival hold meaning; humanity's complex aesthetic preferences are not mere appreciation, but a language of survival.
+            </p>
+            <p>
+              Every complex thing in our current surroundings originated from simple events or a handful of physical laws following the Big Bang. When and why did this vast survival system begin? Was this ceaseless simulation foretold from the very beginning
+            </p>
+          </div>
+
           <p style={{ marginBottom: '0.5rem' }}>Born 1997 Seoul</p>
           <p style={{ marginBottom: '2rem' }}>BFA, Seoul National University of Science and Technology</p>
           
