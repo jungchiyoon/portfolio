@@ -52,6 +52,16 @@ ul {
   padding: 0 2rem;
 }
 
+.work-detail-container {
+  padding: 4rem 0;
+}
+@media (max-width: 768px) {
+  .work-detail-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
 .hero {
   min-height: 80vh;
   display: flex;

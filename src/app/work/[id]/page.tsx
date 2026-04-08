@@ -22,7 +22,7 @@ export default function WorkDetail() {
   }
 
   return (
-    <div className="container animate-fade" style={{ padding: '4rem 0' }}>
+    <div className="container animate-fade work-detail-container">
       {/* Specific layout for the first work (work-01) */}
       {work.id === 'work-01' ? (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
