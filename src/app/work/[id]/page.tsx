@@ -42,7 +42,7 @@ export default function WorkDetail() {
           </div>
 
           {/* Bottom Section: Statement (Left) + Detail Image (Right, 50%) */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'start', marginTop: '1rem' }}>
+          <div className="work-01-bottom-section">
             <div style={{ fontSize: '12pt', color: '#404040', fontWeight: 300, lineHeight: 1.8, whiteSpace: 'pre-wrap', textAlign: 'justify' }}>
               {work.description}
             </div>

@@ -62,6 +62,21 @@ ul {
   }
 }
 
+.work-01-bottom-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+  margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+  .work-01-bottom-section {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
 .hero {
   min-height: 80vh;
   display: flex;
