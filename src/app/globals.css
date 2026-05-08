@@ -192,3 +192,12 @@ nav {
 .animate-fade {
   animation: fadeIn 1s forwards;
 }
+
+@keyframes fadeInOpacity {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-fade-opacity {
+  animation: fadeInOpacity 1s ease-in forwards;
+}
